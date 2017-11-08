@@ -52,8 +52,21 @@ function getRandomQuote() {
   return randQuote;
 }
 
+// Generating a random color
+function backgroundColor() {
+  // Generate random numbers for red, green, and blue
+  // Then add them together
+  var red = Math.floor(Math.random() * 255);
+  var green = Math.floor(Math.random() * 255);
+  var blue = Math.floor(Math.random() * 255);
+  var mixColor = "rgb(" + red + "," + green + ", " + blue + ")";
+  return mixColor;
+}
+
+// print quotes properties to the document
 function printQuote() {
   var randomQuote = getRandomQuote();
+  var randomColor = backgroundColor();
   var html = '<p class="quote">' + randomQuote.quote + '</p>';
   html += '<p class="source">' + randomQuote.source;
   if (randomQuote.citation) {
@@ -66,6 +79,8 @@ function printQuote() {
   html += '</p>';
 
   document.getElementById('quote-box').innerHTML = html;
+  document.body.style.backgroundColor = randomColor;
+  document.getElementById('loadQuote').style.backgroundColor = randomColor;
 }
 
 // Use the setInterval method to change the quote every 10 seconds
