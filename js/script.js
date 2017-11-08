@@ -45,10 +45,23 @@ var quotes = [
   }
 ];
 
+// Put used quotes into this empty array
+var usedQuotes = [];
+
 // Generating a random number to select a random quote
 function getRandomQuote() {
   var randomNumber = Math.floor(Math.random() * (quotes.length));
   var randQuote = quotes[randomNumber];
+  // Used the push method to push a random quote into the usedQuotes empty array
+  usedQuotes.push(randQuote);
+  // Used the splice method to remove one random quote each time in the quotes array
+  quotes.splice(randomNumber, 1);
+  console.log(usedQuotes);
+  // Used the if statement to reset the random quote generator
+  if (quotes.length === 0) {
+    quotes = usedQuotes;
+    usedQuotes = [];
+  }
   return randQuote;
 }
 
@@ -75,11 +88,15 @@ function printQuote() {
   if (randomQuote.year) {
     html += '<span class="year">' + randomQuote.year + '</span>';
   }
+  // added the tags property
   html += '<span class="tags">, ' + randomQuote.tags + '</span>';
   html += '</p>';
 
+  // print random quote to the page
   document.getElementById('quote-box').innerHTML = html;
+  // change the body background color
   document.body.style.backgroundColor = randomColor;
+  // change the button's background color
   document.getElementById('loadQuote').style.backgroundColor = randomColor;
 }
 
